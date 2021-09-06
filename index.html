@@ -1,0 +1,62 @@
+<html>
+   <head>
+      <title>Atividade I da V1</title>
+      <script>
+        function realizarOperacao() {
+           var n1=document.getElementById("n1").value;
+           var n2=document.getElementById("n2").value;
+           var op=document.getElementById("operacao").value;
+           var res = null;
+           console.log("Operação: " + op);
+           
+           if(op == "somar") {
+                res = parseFloat(n1) + parseFloat(n2);
+                alert("Resultado da soma: " + res);
+           } else if(op == "subtrair") {
+                res = n1 - n2 ;
+                alert("Resultado da subtração: " + res);
+           } else if(op == "multiplicar") {
+                res = n1 * n2 ;
+                alert("Resultado da multiplicação: " + res);
+           } else if(op == "dividir") {
+                res = n1 / n2 ;
+                alert("Resultado da divisão: " + res);
+           }
+           console.log("Resultado: " + res);
+           console.log("=================")
+        }  
+      </script>
+
+   </head>
+   <body>
+   <form id="frm"  >
+      <div id="container">
+         <div id="topo"> 
+            <h1>Atividade I da V1</h1>
+
+            <h1>Questão 01:</h1>
+            <hr>
+            <div id="left" style="width: 200px;">
+                <div class="bloco1">
+                <span>Número 1:</span> <input type="text" size="2" id="n1">
+                <hr>
+                <span>Número 2:</span> <input type="text" size="2"  id="n2">
+                <hr>
+                <span>Operação:</span> 
+                <select onchange="realizarOperacao()" id="operacao">
+                    <option value="somar" onchange="somar()">+</option>
+                    <option value="subtrair" onClick="subtrair()">-</option>
+                    <option value="multiplicar" onClick="multiplicar()">*</option>
+                    <option value="dividir" onClick="dividir()">/</option>
+                </select>
+                <hr>
+                </div>
+            </div>
+
+            <h1>Questão 02:</h1>
+            <hr>
+        </div>
+      </div>
+   </form>
+   </body>
+</html>

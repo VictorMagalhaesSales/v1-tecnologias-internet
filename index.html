@@ -27,7 +27,7 @@
         }  
 
         function exibirQtdCaracteres(){
-            var txt   = document.getElementById('campo').value;
+            var txt   = document.getElementById('empresa').value;
             var n     = txt.length;
             alert("" + n + " caracteres digitados");
         }
@@ -42,6 +42,52 @@
                 console.log("Palavras: "+palavras);
                 alert('O texto possui '+palavras.length+' palavras!');
             }
+        }
+
+        function visualizarResultados() {
+            var combo = getValueCombo();
+            var radio = getValueRadio();
+            var multi = getValuesMultiSelect();
+            var check = getValuesCheck();
+            console.log(combo, radio, multi, check);
+            alert(combo+"\n"+multi+"\n"+radio+"\n"+check);
+        }
+
+        function getValueCombo() {
+            var combo = document.getElementById('combobox');
+            return "Combo selecionado: "+combo.options[combo.selectedIndex].label;
+        }
+
+        function getValuesCheck() {
+            var checks = document.getElementsByName('check');
+            var values = "Checkboxs selecionados: "
+
+            for(i = 0; i < checks.length; i++) {
+                if(checks[i].checked)
+                    values = values+checks[i].value+";"
+            }
+            return values;
+        }
+
+        function getValueRadio() {
+            var radios = document.getElementsByName('radio');
+            var values = "Radio selecionados: "
+
+            for(i = 0; i < radios.length; i++) {
+                if(radios[i].checked)
+                    values = values+radios[i].value;
+            }
+            return values;
+        }
+
+        function getValuesMultiSelect() {
+            var multi = document.getElementById('multiselect');
+            var multiValues = multi.selectedOptions;
+            var stringMultiValues = "Valores do multiselect selecionados: ";
+            for(var i = 0; i < multiValues.length; i++) {
+                stringMultiValues = stringMultiValues+multiValues[i].label+";"
+            }
+            return stringMultiValues;
         }
       </script>
    </head>
@@ -76,11 +122,43 @@
 
             <div style="width: 500px;">
                 <form>
-                    <label for="digite">Texto:</label> 
-                    <input name="campo" id="campo" type="text" />
-                    <button onClick="exibirQtdCaracteres()">Exibir n° de caracteres</button>
+                    <label>Empresa:</label> 
+                    <input id="empresa" type="text"/>
+                    <button type="button" onClick="exibirQtdCaracteres()">Exibir n° de caracteres</button>
                     <hr>
+                    <label>Resumo:</label> 
                     <textarea id="textarea" onblur="validarTextArea()"></textarea>
+                    <hr>
+                    <label>Combobox:</label> 
+                    <select id="combobox" onchange="visualizarResultados()">
+                        <option value="cb-op1">Opção 1</option>
+                        <option value="cb-op2">Opção 2</option>
+                        <option value="cb-op3">Opção 3</option>
+                        <option value="cb-op4">Opção 4</option>
+                    </select>
+                    <br><br>
+                    <label>Multiselect:</label> 
+                    <select id="multiselect" multiple onchange="visualizarResultados()">
+                        <option value="ms-op1">Opção 1</option>
+                        <option value="ms-op2">Opção 2</option>
+                        <option value="ms-op3">Opção 3</option>
+                        <option value="ms-op4">Opção 4</option>
+                    </select>
+                    <br><br>
+                    <label>Radio button:</label>
+                    <input type="radio" name="radio" id="radio-op1" value="Opção 1" onchange="visualizarResultados()">
+                    <label>Opção 1</label> 
+                    <input type="radio" name="radio" id="radio-op2" value="Opção 2" onchange="visualizarResultados()">
+                    <label>Opção 2</label> 
+                    <br><br>
+                    <input type="checkbox" name="check" id ="check-op1" value="Opção 1" onchange="visualizarResultados()">
+                    <label>Opção 1</label>
+                    <input type="checkbox" name="check" id ="check-op2" value="Opção 2" onchange="visualizarResultados()">
+                    <label>Opção 2</label>
+                    <br>
+                    <br>
+                    <button type="button" onClick="visualizarResultados()">Visualizar resultados</button>
+                    <hr>
                  </form>
             </div>
         </div>
